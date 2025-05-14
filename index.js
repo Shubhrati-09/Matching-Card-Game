@@ -55,11 +55,12 @@ document.addEventListener('DOMContentLoaded',() =>{
             element.querySelector('.blank').classList.remove('hide');
             FlippedCards = [];
             flipCount = 0;
-            flipCnt.innerHTML = `<p>Flips: ${flipCount}</p>`
-            time.innerText = maxTime;
         });
+        flipCnt.innerHTML = `<p>Flips: ${flipCount}</p>`
+        time.innerText = maxTime;
         clearInterval(timer);
         GameStarted = false;
+        timeLeft = maxTime;
         randomizeCards();
     }
 
