@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Match Card Game</title>
+</head>
+<body>
+    <div id="title" style="text-align: center;">
+        <h1>Match Card Game!</h1>
+    </div>
+    <div id="main">
+        <!-- make a grid -->
+         <div id="playground">
+            <div class="container">
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+                <div class="grid-item">
+                    <div class="face hide"></div>
+                    <div class="blank"><img src="images/blank.jpg" alt="Hiding Image"></div>
+                </div>
+            </div>
+
+            <!-- ScoreCard Display -->
+            <div class="scorecard">
+                <div id="time" class="scoreitem"><p>Time: <b>40</b>sec</p></div>
+                <div id="flips" class="scoreitem"><p>Flips: 0</p></div>
+                <button id="refresh">Refresh</button>
+            </div>
+         </div>
+    </div>
+
+    <!-- pop Up if Flip Limit Reached  -->
+    <div id="modal" class = "hide">
+        <div id="limitReached" >
+            <p>Oops!You have reached the maximum allowed <b>flips</b>.😔</p>
+            <p>Try Again!</p>
+            <button id="okay">Okay</button>
+        </div>
+    </div>
+
+    <footer style="text-align: center; ">
+        <p>Designed and Developed By Shubhrati | &copy All Rights Reserved.</p>
+    </footer>
+</body>
+<script src="index.js"></script>
+</html>

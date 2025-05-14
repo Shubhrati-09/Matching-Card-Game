@@ -1,0 +1,272 @@
+*{
+    box-sizing: border-box;
+}
+body{  
+    height:100%;
+    padding:0px;
+    margin:0px;
+    background-color: #F4C2C2;
+    /* background-color: #FFE4E1; */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='152' height='152' viewBox='0 0 152 152'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='temple' fill='%23fcfcfc' fill-opacity='0.4'%3E%3Cpath d='M152 150v2H0v-2h28v-8H8v-20H0v-2h8V80h42v20h20v42H30v8h90v-8H80v-42h20V80h42v40h8V30h-8v40h-42V50H80V8h40V0h2v8h20v20h8V0h2v150zm-2 0v-28h-8v20h-20v8h28zM82 30v18h18V30H82zm20 18h20v20h18V30h-20V10H82v18h20v20zm0 2v18h18V50h-18zm20-22h18V10h-18v18zm-54 92v-18H50v18h18zm-20-18H28V82H10v38h20v20h38v-18H48v-20zm0-2V82H30v18h18zm-20 22H10v18h18v-18zm54 0v18h38v-20h20V82h-18v20h-20v20H82zm18-20H82v18h18v-18zm2-2h18V82h-18v18zm20 40v-18h18v18h-18zM30 0h-2v8H8v20H0v2h8v40h42V50h20V8H30V0zm20 48h18V30H50v18zm18-20H48v20H28v20H10V30h20V10h38v18zM30 50h18v18H30V50zm-2-40H10v18h18V10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+#title{
+    font-size: 40px;
+    color:rgb(123, 77, 85);
+}
+
+#title h1{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+#main{
+    margin:20px;
+    height:80%;
+    display:flex;
+}
+
+#playground{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+    border:2px solid white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 32px #554242;
+    align-items: center;
+}
+
+.container{
+    box-sizing: border-box;
+    border:1px solid brown;
+    border-radius: 20px;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    height:400px;
+    width:400px;
+    gap:10px;
+    margin:auto; /*isse automatically beech mai aa vgya grid */
+    margin:20px;
+}
+
+.scorecard{
+    border:1px solid brown;
+    border-radius: 20px;
+    width:400px;
+    margin:auto;
+    height:50px;
+    margin:20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.grid-item{
+    border:1px solid white;
+    border-radius:20px;
+    /* Problem that the last row going out, adding these aspect ratio and overflow solved it */
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    /* try */
+    transform-style: preserve-3d;
+    cursor:pointer;
+    perspective: 1000px;
+    transition: transform 0.25s linear;
+}
+
+.grid-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    overflow: hidden;
+}
+
+#refresh{
+    border:none;
+    border-radius: 20px;
+    height:40px;
+    width:100px;
+    transition : transform 0.5sec ease-in-out;
+}
+button:hover{
+    transform : translateY(-1px);
+    box-shadow : 0px 0px 20px rgb(188, 113, 155);
+}
+
+button:active{
+    transform : translate3d(4px) scale(0.5);
+    box-shadow : 0px 0px 20px rgb(188, 113, 155);
+}
+.scoreitem{
+    display: flex;
+    background-color: #ede8e8;
+    width:100px;
+    height:40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+.face{
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+}
+
+.grid-item.shake{
+    animation : shake 0.40s ease-in-out;
+}
+
+@keyframes shake{
+    0%,
+    100%{
+        transform: translateX(0);
+    }
+
+    20%{
+        transform : translateX(-8px);
+    }
+
+    40%{
+        transform : translateX(8px);
+    }
+
+    60%{
+        transform:translateX(-5px);
+    }
+    
+    80%{
+        transform : translateX(5px);
+    }
+}
+
+.face,.blank{
+    backface-visibility: hidden;
+    
+}
+
+.grid-item.flipped{
+    transform: rotateY(180deg);
+}
+
+.blank{
+    transform : rotateY(0);
+}
+
+.face{
+    transform : rotateY(0deg);
+}
+
+
+/* Limit Reached PopUp */
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3; /*for safeside take 1000 if you don't know the layers*/
+}
+
+#limitReached {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#okay{
+    color: rgb(137, 105, 111);
+    border:none;
+    font-size:20px;
+    width:100px;
+    height:4vh;
+    border-radius: 20px;
+
+}
+
+.hide{
+    display:none !important;
+}
+
+@media (min-width:400px ) and (max-width: 500px){
+    #title{
+        font-size:25px;
+    }
+
+    .container{
+        width:300px;
+        height:300px;
+    }
+
+    .scorecard{
+        width:300px;
+    }
+
+    .scoreitem{
+        width:90px;
+    }
+    #refresh{
+        width:90px;
+    }
+}
+
+@media (min-width:330px ) and (max-width: 400px){
+    #title{
+        font-size:18px;
+    }
+
+    .container{
+        width:250px;
+        height:250px;
+    }
+
+    .scorecard{
+        width:250px;
+        height:8vh;
+    }
+
+    .scoreitem{
+        width:80px;
+        height:7vh;
+        font-size:15px;
+    }
+    #refresh{
+        height:7vh;
+        width:80px;
+    }
+}
+
+@media (max-width: 330px){
+    #title{
+        font-size:15px;
+    }
+
+    .container{
+        width:200px;
+        height:200px;
+    }
+
+    .scorecard{
+        width:200px;
+        height:7vh;
+    }
+
+    .scoreitem{
+        width:62px;
+        height:6vh;
+        font-size:12px;
+    }
+    #refresh{
+        height:6vh;
+        width:62px;
+        font-size: 12px;
+    }
+}
