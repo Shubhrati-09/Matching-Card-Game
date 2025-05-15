@@ -7,9 +7,12 @@ document.addEventListener('DOMContentLoaded',() =>{
     const time = document.querySelector('#time b');
     const maxLimit = document.getElementById('modal');
     const limitWord = maxLimit.querySelector('b');
+    const winMsg = document.querySelector('.win');
+    const lostMsg = document.querySelectorAll('.lost');
     const okaybtn = document.getElementById('okay');
     let FlippedCards = [];
     let GameStarted = false;
+    let MatchCount = 0;
     //to prevent user to click third card while 
     //the two unmatched cards getting flipped again
     let isBoardLocked = false; 
@@ -62,6 +65,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         GameStarted = false;
         timeLeft = maxTime;
         randomizeCards();
+        MatchCount = 0;
     }
 
     function StartTimer(){
@@ -75,6 +79,16 @@ document.addEventListener('DOMContentLoaded',() =>{
         time.innerText = timeLeft;
     }
 
+    function Win(){
+        if(MatchCount === 8){
+            maxLimit.classList.remove('hide');
+            winMsg.classList.remove('hide');
+            lostMsg.forEach(para => {
+                para.classList.add('hide');
+            });
+        }
+    }
+
     randomizeCards();
 
     //------------Refresh btn Function------------
@@ -86,6 +100,10 @@ document.addEventListener('DOMContentLoaded',() =>{
     okaybtn.addEventListener('click',() => {
         ReloadGame();
         maxLimit.classList.add('hide');
+        winMsg.classList.add('hide');
+        lostMsg.forEach(para => {
+            para.classList.remove('hide');
+        });
     });
 
     //------Attaching listener to each grid item for flipping-------
@@ -96,21 +114,19 @@ document.addEventListener('DOMContentLoaded',() =>{
                 timer = setInterval(StartTimer,1000);
             }
             if(isBoardLocked) return;
+            flipCount++;
             if(!item.querySelector('.face').classList.contains('hide')) return;
-            if(flipCount >= 30){
+            if(flipCount > 30){
                 maxLimit.classList.remove('hide');
                 limitWord.innerText = 'flips';
             }
             else{
     
                 //Incrementing Flip Count
-                flipCount++;
                 flipCnt.innerHTML = `<p>Flips: ${flipCount}</p>`
                 item.classList.add('flipped');
-                console.log(item.classList.contains('flipped'));
                 setTimeout(() => {
                     item.classList.remove('flipped');
-                    console.log(item.classList.contains('flipped'));
                 },100);
     
                 if(item.querySelector('.face').classList.contains('hide')){
@@ -121,8 +137,10 @@ document.addEventListener('DOMContentLoaded',() =>{
                 FlippedCards.push(item);
                 if(FlippedCards.length == 2){
                     if(FlippedCards[0].querySelector('.face').innerHTML === FlippedCards[1].querySelector('.face').innerHTML){
-                        console.log('matched');
+                        // console.log('matched');
                         FlippedCards = [];
+                        MatchCount++;
+                        Win(); //Check if Won or Not
                     }
                     else{
                         isBoardLocked = true;
